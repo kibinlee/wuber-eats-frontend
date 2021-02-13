@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "../components/button";
@@ -46,6 +46,7 @@ export const CreateAccount = () => {
       createAccount: { ok },
     } = data;
     if (ok) {
+      alert("Account Created! Log in now!");
       history.push("/login");
     }
   };
@@ -75,7 +76,7 @@ export const CreateAccount = () => {
         <title>Create Account | Nuber Eats</title>
       </Helmet>
       <div className="w-full max-w-screen-sm flex flex-col px-5 items-center">
-        <img src={nuberLogo} className="w-52 mb-10" />
+        <img src={nuberLogo} className="w-52 mb-10" alt="Wuber Eats" />
         <h4 className="w-full font-medium text-left text-3xl mb-5">
           Let's get started
         </h4>

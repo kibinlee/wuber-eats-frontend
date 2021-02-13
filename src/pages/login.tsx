@@ -1,12 +1,14 @@
 import { gql, useMutation } from "@apollo/client";
 import React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { isLoggedInVar } from "../apollo";
+import { authTokenVar, isLoggedInVar } from "../apollo";
 import { Button } from "../components/button";
 import { FormError } from "../components/form-error";
+import { LOCALSTORAGE_TOKEN } from "../constants";
 import nuberLogo from "../images/logo.svg";
+
 import {
   loginMutation,
   loginMutationVariables,
@@ -41,8 +43,9 @@ export const Login = () => {
     const {
       login: { ok, token },
     } = data;
-    if (ok) {
-      console.log(token);
+    if (ok && token) {
+      localStorage.setItem(LOCALSTORAGE_TOKEN, token);
+      authTokenVar(token);
       isLoggedInVar(true);
     }
   };
@@ -71,7 +74,7 @@ export const Login = () => {
         <title>Login | Nuber Eats</title>
       </Helmet>
       <div className="w-full max-w-screen-sm flex flex-col px-5 items-center">
-        <img src={nuberLogo} className="w-52 mb-10" />
+        <img src={nuberLogo} className="w-52 mb-10" alt="Wuber Eats" />
         <h4 className="w-full font-medium text-left text-3xl mb-5">
           Welcome back
         </h4>
