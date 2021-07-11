@@ -8,5 +8,11 @@
 .btn {
   @apply mt-3 text-lg font-medium text-white py-4 bg-green-600 hover:bg-green-700 transition-colors;
 }
+.container {
+  @apply max-w-screen-2xl mx-auto;
+}
 
+.link {
+  @apply text-lime-600 hover:underline;
+}
 @tailwind utilities;
