@@ -15,9 +15,9 @@ export const MY_RESTAURANT_QUERY = gql`
       error
       restaurant {
         ...RestaurantParts
-      }
-      menu {
-        ...DishParts
+        menu {
+          ...DishParts
+        }
       }
     }
   }
